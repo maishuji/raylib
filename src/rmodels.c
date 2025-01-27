@@ -556,59 +556,8 @@ void DrawSphereWires(Vector3 centerPos, float radius, int rings, int slices, Col
 // NOTE: It could be also used for pyramid and cone
 void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int sides, Color color)
 {
-    if (sides < 3) sides = 3;
-
-    const float angleStep = 360.0f/sides;
-
-    rlPushMatrix();
-        rlTranslatef(position.x, position.y, position.z);
-
-        rlBegin(RL_TRIANGLES);
-            rlColor4ub(color.r, color.g, color.b, color.a);
-
-            if (radiusTop > 0)
-            {
-                // Draw Body -------------------------------------------------------------------------------------
-                for (int i = 0; i < sides; i++)
-                {
-                    rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusBottom, 0, cosf(DEG2RAD*i*angleStep)*radiusBottom); //Bottom Left
-                    rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusBottom, 0, cosf(DEG2RAD*(i+1)*angleStep)*radiusBottom); //Bottom Right
-                    rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusTop, height, cosf(DEG2RAD*(i+1)*angleStep)*radiusTop); //Top Right
-
-                    rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusTop, height, cosf(DEG2RAD*i*angleStep)*radiusTop); //Top Left
-                    rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusBottom, 0, cosf(DEG2RAD*i*angleStep)*radiusBottom); //Bottom Left
-                    rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusTop, height, cosf(DEG2RAD*(i+1)*angleStep)*radiusTop); //Top Right
-                }
-
-                // Draw Cap --------------------------------------------------------------------------------------
-                for (int i = 0; i < sides; i++)
-                {
-                    rlVertex3f(0, height, 0);
-                    rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusTop, height, cosf(DEG2RAD*i*angleStep)*radiusTop);
-                    rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusTop, height, cosf(DEG2RAD*(i+1)*angleStep)*radiusTop);
-                }
-            }
-            else
-            {
-                // Draw Cone -------------------------------------------------------------------------------------
-                for (int i = 0; i < sides; i++)
-                {
-                    rlVertex3f(0, height, 0);
-                    rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusBottom, 0, cosf(DEG2RAD*i*angleStep)*radiusBottom);
-                    rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusBottom, 0, cosf(DEG2RAD*(i+1)*angleStep)*radiusBottom);
-                }
-            }
-
-            // Draw Base -----------------------------------------------------------------------------------------
-            for (int i = 0; i < sides; i++)
-            {
-                rlVertex3f(0, 0, 0);
-                rlVertex3f(sinf(DEG2RAD*(i+1)*angleStep)*radiusBottom, 0, cosf(DEG2RAD*(i+1)*angleStep)*radiusBottom);
-                rlVertex3f(sinf(DEG2RAD*i*angleStep)*radiusBottom, 0, cosf(DEG2RAD*i*angleStep)*radiusBottom);
-            }
-
-        rlEnd();
-    rlPopMatrix();
+    // Stub : Existing implement causes gcc internal error
+    return;
 }
 
 // Draw a cylinder with base at startPos and top at endPos
